@@ -14,3 +14,16 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/usuarios', function(){
+    return "Usuarios";
+});
+
+
+Route::get('/usuario/{id}', function($id){
+    return "Usuario: {$id}";
+});
+
+Route::get('/usuario/{id}/edit', function($id){
+    return "Edición Usuario: {$id}";
+})->where('id','[0-9]+');
