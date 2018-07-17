@@ -15,15 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/usuarios', function(){
-    return "Usuarios";
-});
+Route::get('/usuarios', 'UserController@index')
+    ->name('users');
 
+Route::get('/usuario/{user}', 'UserController@show')
+    ->where('user','[0-9]+')
+    ->name('users.show');
 
-Route::get('/usuario/{id}', function($id){
-    return "Usuario: {$id}";
-});
+Route::get('/usuario/nuevo', 'UserController@create')
+    ->name('users.create');
 
-Route::get('/usuario/{id}/edit', function($id){
-    return "Edición Usuario: {$id}";
-})->where('id','[0-9]+');
+Route::get('/usuario/{id}/edit', 'UserController@edit')
+    ->where('id','[0-9]+');
+
+Route::get('/saludo/{name}', 'WelcomeUserController@saludo_simple');
+Route::get('/saludo/{name}/{nickname}', 'WelcomeUserController@saludo_compuesto');
