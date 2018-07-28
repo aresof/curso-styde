@@ -25,8 +25,16 @@ Route::get('/usuario/{user}', 'UserController@show')
 Route::get('/usuario/nuevo', 'UserController@create')
     ->name('users.create');
 
-Route::get('/usuario/{id}/edit', 'UserController@edit')
-    ->where('id','[0-9]+');
+Route::post('/usuario/crear', 'UserController@store');
+
+Route::get('/usuario/{user}/edit', 'UserController@edit')
+    ->where('id','[0-9]+')
+    ->name('users.edit');
+
+Route::put('/usuario/{user}', 'UserController@update');
 
 Route::get('/saludo/{name}', 'WelcomeUserController@saludo_simple');
 Route::get('/saludo/{name}/{nickname}', 'WelcomeUserController@saludo_compuesto');
+
+Route::delete('/usuario/{user}', 'UserController@destroy')
+    ->name('users.destroy');

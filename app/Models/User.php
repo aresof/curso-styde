@@ -3,13 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 
 /**
  * @property mixed email
  */
-class User extends Model
+class User extends Model implements AuthenticatableContract
 {
-
+    use Authenticatable;
     /**
      * The attributes that are mass assignable.
      *
